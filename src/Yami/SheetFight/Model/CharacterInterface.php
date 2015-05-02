@@ -9,7 +9,7 @@ namespace Yami\SheetFight\Model;
  * @author Ludovic FLEURY <ludo.fleury@gmail.com>
  */
 interface CharacterInterface
-{
+{    
     /**
      * Return character's name
      *

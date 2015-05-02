@@ -1,0 +1,29 @@
+{
+    "name": "yami/sheet-fight",
+    "description": "Playbook for Street Fighter 4",
+    "type": "project",
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "Kevin Gittens",
+            "email": "kgittens973@gmail.com"
+        },
+        {
+            "name": "Ludovic Fleury",
+            "email": "ludo.fleury@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {"":"src"}
+    },
+    "config": {
+        "bin-dir": "bin"
+    },
+    "minimum-stability": "dev",
+    "require": {
+
+    },
+    "require-dev": {
+        "phpspec/phpspec": "^2.2@dev"
+    }
+}
