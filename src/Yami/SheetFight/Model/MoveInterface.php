@@ -10,6 +10,23 @@ namespace Yami\SheetFight\Model;
  */
 interface MoveInterface
 {
+    const TYPE_NORMAL = "normal";
+
+    const TYPE_SPECIAL = "special";
+
+    const TYPE_SUPER = "super";
+
+    const TYPE_ULTRA = "ultra";
+
+    const TYPE_FOCUS = "focus";
+
+    /**
+     * Return the type
+     *
+     * @return string
+     */
+    public function getType();
+
     /**
      * Return the common name
      *
