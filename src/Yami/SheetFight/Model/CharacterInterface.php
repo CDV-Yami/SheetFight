@@ -25,13 +25,6 @@ interface CharacterInterface
     public function getHealth();
 
     /**
-     * Return character's stun gauge
-     *
-     * @return int
-     */
-    public function getStun();
-
-    /**
      * Return the list of moves available
      *
      * @return Yami\SheetFight\Model\MoveInterface[]

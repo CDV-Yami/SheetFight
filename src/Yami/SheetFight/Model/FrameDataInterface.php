@@ -36,12 +36,12 @@ interface FrameDataInterface
      *
      * @return int
      */
-    public function getOnGuardAdvantage();
+    public function getGuardAdvantage();
 
     /**
      * Return the difference of frame when the target gets hit to get back to the neutral state
      *
      * @return int
      */
-    public function getOnHitAdvantage();
+    public function getHitAdvantage();
 }

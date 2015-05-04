@@ -16,16 +16,26 @@ interface MoveInterface
 
     const TYPE_SUPER = "super";
 
-    const TYPE_ULTRA = "ultra";
-
-    const TYPE_FOCUS = "focus";
+    /**
+     * Return true if it's a normal move
+     *
+     * @return bool
+     */
+    public function isNormal();
 
     /**
-     * Return the type
+     * Return true if it's a special move
      *
-     * @return string
+     * @return bool
      */
-    public function getType();
+    public function isSpecial();
+
+    /**
+     * Return true if it's a super move
+     *
+     * @return bool
+     */
+    public function isSuper();
 
     /**
      * Return the common name
@@ -54,13 +64,6 @@ interface MoveInterface
      * @return int
      */
     public function getDamage();
-
-    /**
-     * Return the stun value dealt to the target
-     *
-     * @return int
-     */
-    public function getStun();
 
     /**
      * Return the meter gain value earned by the dealer
