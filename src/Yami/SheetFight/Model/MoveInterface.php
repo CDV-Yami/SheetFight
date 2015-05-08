@@ -17,7 +17,7 @@ interface MoveInterface
     const TYPE_SUPER = 'super';
 
     /**
-     * Return true if it's a normal move.
+     * Return true if it's a normal move
      *
      * @return bool
      */
