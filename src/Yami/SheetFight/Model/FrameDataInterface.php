@@ -44,4 +44,13 @@ interface FrameDataInterface
      * @return int
      */
     public function getHitAdvantage();
+
+    /**
+     * Compare by frames.
+     *
+     * @param FrameDataInterface $frameData
+     *
+     * @return bool
+     */
+    public function equals(FrameDataInterface $frameData);
 }
