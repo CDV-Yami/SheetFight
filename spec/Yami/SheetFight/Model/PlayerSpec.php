@@ -3,7 +3,6 @@
 namespace spec\Yami\SheetFight\Model;
 
 use PhpSpec\ObjectBehavior;
-use Prophecy\Argument;
 use InvalidArgumentException;
 use Yami\SheetFight\Model\CharacterInterface;
 

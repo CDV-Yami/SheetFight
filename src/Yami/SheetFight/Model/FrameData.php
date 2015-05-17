@@ -43,7 +43,7 @@ class FrameData implements FrameDataInterface
     }
 
     /**
-     * [@inheritdoc].
+     * {@inheritdoc}
      *
      * @return int
      */
@@ -53,7 +53,7 @@ class FrameData implements FrameDataInterface
     }
 
     /**
-     * [@inheritdoc].
+     * {@inheritdoc}
      *
      * @return int
      */
@@ -63,7 +63,7 @@ class FrameData implements FrameDataInterface
     }
 
     /**
-     * [@inheritdoc].
+     * {@inheritdoc}
      *
      * @return int
      */
@@ -73,7 +73,7 @@ class FrameData implements FrameDataInterface
     }
 
     /**
-     * [@inheritdoc].
+     * {@inheritdoc}
      *
      * @return int
      */
@@ -83,7 +83,7 @@ class FrameData implements FrameDataInterface
     }
 
     /**
-     * [@inheritdoc].
+     * {@inheritdoc}
      *
      * @return int
      */
