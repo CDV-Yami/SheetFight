@@ -3,7 +3,6 @@
 namespace spec\Yami\SheetFight\Model;
 
 use PhpSpec\ObjectBehavior;
-use Prophecy\Argument;
 use InvalidArgumentException;
 use RangeException;
 use Yami\SheetFight\Model\MoveInterface;
@@ -78,6 +77,7 @@ class CharacterSpec extends ObjectBehavior
 
     public function its_should_have_unique_moves(MoveInterface $move)
     {
+        $move->getInputs(true)->willReturn('236P');
         $this->shouldThrow(new InvalidArgumentException('The moves should contain only unique move'))
             ->during('__construct', ['Yamo', 100, [$move, $move]])
         ;
