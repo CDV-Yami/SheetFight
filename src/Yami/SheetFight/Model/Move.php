@@ -199,4 +199,26 @@ class Move implements MoveInterface
     {
         return $this->frameData;
     }
+
+    /**
+     * {@inheritdoc}
+     *
+     * @param MoveInterface $otherMove
+     *
+     * @return bool
+     */
+    public function equals(MoveInterface $otherMove)
+    {
+        if (count($this->inputs) !== count($otherMove->getInputs())) {
+            return false;
+        }
+
+        foreach ($this->inputs as $index => $input) {
+            if ($otherMove->getInputs()[$index] !== $input) {
+                return false;
+            }
+        }
+
+        return true;
+    }
 }

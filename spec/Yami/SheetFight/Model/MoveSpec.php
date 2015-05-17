@@ -195,4 +195,15 @@ class MoveSpec extends ObjectBehavior
     {
         $this->getFrameData()->shouldReturn($this->defaultFrameData);
     }
+
+    public function it_compares_by_inputs(MoveInterface $otherMove)
+    {
+        $otherMove->getInputs()->willReturn($this->defaultInputs);
+        $this->equals($otherMove)->shouldBeBoolean();
+        $this->equals($otherMove)->shouldReturn(true);
+
+        $otherMove->getInputs()->willReturn([]);
+        $this->equals($otherMove)->shouldBeBoolean();
+        $this->equals($otherMove)->shouldReturn(false);
+    }
 }
