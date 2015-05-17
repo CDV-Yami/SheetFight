@@ -157,11 +157,20 @@ class Move implements MoveInterface
     /**
      * {@inheritdoc}
      *
-     * @return Yami\SheetFight\Model\InputInterface[]
+     * @return Yami\SheetFight\Model\InputInterface[]|string
      */
-    public function getInputs()
+    public function getInputs($asString = false)
     {
-        return $this->inputs;
+        if ($asString) {
+            $inputs = '';
+            foreach ($this->inputs as $input) {
+                $inputs .= $input->getValue();
+            }
+        } else {
+            $inputs = $this->inputs;
+        }
+
+        return $inputs;
     }
 
     /**
@@ -223,16 +232,6 @@ class Move implements MoveInterface
      */
     public function equals(MoveInterface $otherMove)
     {
-        if (count($this->inputs) !== count($otherMove->getInputs())) {
-            return false;
-        }
-
-        foreach ($this->inputs as $index => $input) {
-            if ($otherMove->getInputs()[$index] !== $input) {
-                return false;
-            }
-        }
-
-        return true;
+        return $this->getInputs(true) === $otherMove->getInputs(true);
     }
 }

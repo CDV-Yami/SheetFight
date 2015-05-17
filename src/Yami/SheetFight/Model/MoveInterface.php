@@ -17,7 +17,7 @@ interface MoveInterface
     const TYPE_SUPER = 'super';
 
     /**
-     * Return true if it's a normal move
+     * Return true if it's a normal move.
      *
      * @return bool
      */
@@ -54,9 +54,9 @@ interface MoveInterface
     /**
      * Return a collection of inputs required to accomplish the move.
      *
-     * @return Yami\SheetFight\Model\InputInterface[]
+     * @return Yami\SheetFight\Model\InputInterface[]|string
      */
-    public function getInputs();
+    public function getInputs($asString = false);
 
     /**
      * Return the damage value dealt to the target.
