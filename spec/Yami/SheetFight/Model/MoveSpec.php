@@ -20,6 +20,7 @@ class MoveSpec extends ObjectBehavior
     {
         $input->getValue()->willReturn('2');
         $move->getInputs()->willReturn([$input]);
+        $move->getInputs(true)->willReturn('2');
         $this->defaultInputs = [$input];
         $this->defaultCancelAbilities = [$move];
         $this->defaultFrameData = $frameData;
@@ -113,6 +114,7 @@ class MoveSpec extends ObjectBehavior
     public function it_has_inputs()
     {
         $this->getInputs()->shouldReturn($this->defaultInputs);
+        $this->getInputs(true)->shouldReturn('2');
     }
 
     public function its_inputs_should_always_be_an_array()
@@ -210,11 +212,11 @@ class MoveSpec extends ObjectBehavior
 
     public function it_compares_by_inputs(MoveInterface $otherMove)
     {
-        $otherMove->getInputs()->willReturn($this->defaultInputs);
+        $otherMove->getInputs(true)->willReturn('2');
         $this->equals($otherMove)->shouldBeBoolean();
         $this->equals($otherMove)->shouldReturn(true);
 
-        $otherMove->getInputs()->willReturn([]);
+        $otherMove->getInputs(true)->willReturn('');
         $this->equals($otherMove)->shouldBeBoolean();
         $this->equals($otherMove)->shouldReturn(false);
     }
