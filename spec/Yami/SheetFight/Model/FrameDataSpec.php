@@ -4,6 +4,7 @@ namespace spec\Yami\SheetFight\Model;
 
 use PhpSpec\ObjectBehavior;
 use InvalidArgumentException;
+use Yami\SheetFight\Model\FrameDataInterface;
 
 class FrameDataSpec extends ObjectBehavior
 {
@@ -65,5 +66,24 @@ class FrameDataSpec extends ObjectBehavior
         $this->shouldThrow(new InvalidArgumentException('The hit advantage should be integer'))
             ->during('__construct', [1, 2, 3, 4, 'Yamo'])
         ;
+    }
+
+    public function it_compares_by_frames_value(FrameDataInterface $otherFrameData)
+    {
+        $otherFrameData->getStartup()->willReturn(1);
+        $otherFrameData->getActive()->willReturn(2);
+        $otherFrameData->getRecovery()->willReturn(3);
+        $otherFrameData->getGuardAdvantage()->willReturn(4);
+        $otherFrameData->getHitAdvantage()->willReturn(5);
+        $this->equals($otherFrameData)->shouldBeBoolean();
+        $this->equals($otherFrameData)->shouldReturn(true);
+
+        $otherFrameData->getStartup()->willReturn(1);
+        $otherFrameData->getActive()->willReturn(2);
+        $otherFrameData->getRecovery()->willReturn(2);
+        $otherFrameData->getGuardAdvantage()->willReturn(4);
+        $otherFrameData->getHitAdvantage()->willReturn(5);
+        $this->equals($otherFrameData)->shouldBeBoolean();
+        $this->equals($otherFrameData)->shouldReturn(false);
     }
 }

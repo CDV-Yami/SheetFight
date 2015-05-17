@@ -8,6 +8,7 @@ use RangeException;
 use Yami\SheetFight\Model\InputInterface;
 use Yami\SheetFight\Model\MoveInterface;
 use Yami\SheetFight\Model\FrameDataInterface;
+use LogicException;
 
 class MoveSpec extends ObjectBehavior
 {
@@ -17,6 +18,8 @@ class MoveSpec extends ObjectBehavior
 
     public function let(InputInterface $input, MoveInterface $move, FrameDataInterface $frameData)
     {
+        $input->getValue()->willReturn('2');
+        $move->getInputs()->willReturn([$input]);
         $this->defaultInputs = [$input];
         $this->defaultCancelAbilities = [$move];
         $this->defaultFrameData = $frameData;
@@ -191,8 +194,28 @@ class MoveSpec extends ObjectBehavior
         ;
     }
 
+    public function its_cancel_abilities_should_contain_unique_moves(MoveInterface $move, InputInterface $input)
+    {
+        $input->getValue()->willReturn('2');
+        $move->getInputs()->willReturn([$input]);
+        $this->shouldThrow(new LogicException('The cancel abilities should contain unique moves'))
+            ->during('__construct', [MoveInterface::TYPE_NORMAL, 'YamoKick', 'standing', $this->defaultInputs, 100, 100, 'mid', [$move, $move], $this->defaultFrameData])
+        ;
+    }
+
     public function it_has_a_frame_data()
     {
         $this->getFrameData()->shouldReturn($this->defaultFrameData);
+    }
+
+    public function it_compares_by_inputs(MoveInterface $otherMove)
+    {
+        $otherMove->getInputs()->willReturn($this->defaultInputs);
+        $this->equals($otherMove)->shouldBeBoolean();
+        $this->equals($otherMove)->shouldReturn(true);
+
+        $otherMove->getInputs()->willReturn([]);
+        $this->equals($otherMove)->shouldBeBoolean();
+        $this->equals($otherMove)->shouldReturn(false);
     }
 }

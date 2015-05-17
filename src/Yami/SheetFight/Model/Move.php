@@ -3,6 +3,7 @@
 namespace Yami\SheetFight\Model;
 
 use InvalidArgumentException;
+use LogicException;
 use RangeException;
 
 /**
@@ -74,11 +75,24 @@ class Move implements MoveInterface
             throw new InvalidArgumentException('The cancel abilities should be an array');
         }
 
-        foreach ($cancelAbilities as $cancelAbility) {
+        $uniqueCancelAbilities = [];
+        foreach ($cancelAbilities as $index => $cancelAbility) {
             if (!($cancelAbility instanceof MoveInterface)) {
                 throw new InvalidArgumentException('The cancel abilities should contain only moves');
             }
+
+            $serializedInputs = '';
+            foreach ($cancelAbility->getInputs() as $input) {
+                $serializedInputs .= $input->getValue();
+            }
+
+            if (isset($uniqueCancelAbilities[$serializedInputs])) {
+                throw new LogicException('The cancel abilities should contain unique moves');
+            }
+
+            $uniqueCancelAbilities[$serializedInputs] = true;
         }
+        unset($uniqueCancelAbilities);
 
         $this->type = $type;
         $this->name = $name;
@@ -198,5 +212,27 @@ class Move implements MoveInterface
     public function getFrameData()
     {
         return $this->frameData;
+    }
+
+    /**
+     * {@inheritdoc}
+     *
+     * @param MoveInterface $otherMove
+     *
+     * @return bool
+     */
+    public function equals(MoveInterface $otherMove)
+    {
+        if (count($this->inputs) !== count($otherMove->getInputs())) {
+            return false;
+        }
+
+        foreach ($this->inputs as $index => $input) {
+            if ($otherMove->getInputs()[$index] !== $input) {
+                return false;
+            }
+        }
+
+        return true;
     }
 }

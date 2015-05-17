@@ -92,4 +92,13 @@ interface MoveInterface
      * @return Yami\SheetFight\Model\FrameDataInterface
      */
     public function getFrameData();
+
+    /**
+     * Compares move by inputs.
+     *
+     * @param MoveInterface $otherMove
+     *
+     * @return bool
+     */
+    public function equals(MoveInterface $otherMove);
 }

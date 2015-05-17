@@ -5,7 +5,7 @@ namespace Yami\SheetFight\Model;
 use InvalidArgumentException;
 
 /**
- * Represents a person playing the game
+ * Represents a person playing the game.
  *
  * @author Kevin GITTENS <kgittens973@gmail.com>
  * @author Ludovic FLEURY <ludo.fleury@gmail.com>
@@ -17,7 +17,7 @@ class Player implements PlayerInterface
     private $sub;
 
     /**
-     * Creates a new player
+     * Creates a new player.
      *
      * @param string $nickname, CharacterInterface $main and CharacterInterface $sub
      */

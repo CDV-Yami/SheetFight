@@ -43,7 +43,7 @@ class FrameData implements FrameDataInterface
     }
 
     /**
-     * [@inheritdoc].
+     * {@inheritdoc}
      *
      * @return int
      */
@@ -53,7 +53,7 @@ class FrameData implements FrameDataInterface
     }
 
     /**
-     * [@inheritdoc].
+     * {@inheritdoc}
      *
      * @return int
      */
@@ -63,7 +63,7 @@ class FrameData implements FrameDataInterface
     }
 
     /**
-     * [@inheritdoc].
+     * {@inheritdoc}
      *
      * @return int
      */
@@ -73,7 +73,7 @@ class FrameData implements FrameDataInterface
     }
 
     /**
-     * [@inheritdoc].
+     * {@inheritdoc}
      *
      * @return int
      */
@@ -83,12 +83,30 @@ class FrameData implements FrameDataInterface
     }
 
     /**
-     * [@inheritdoc].
+     * {@inheritdoc}
      *
      * @return int
      */
     public function getHitAdvantage()
     {
         return $this->hitAdvantage;
+    }
+
+    /**
+     * {@inheritdoc}
+     *
+     * @param FrameDataInterface $otherFrameData
+     *
+     * @return bool
+     */
+    public function equals(FrameDataInterface $otherFrameData)
+    {
+        return
+            $this->startup === $otherFrameData->getStartup() &&
+            $this->active === $otherFrameData->getActive() &&
+            $this->recovery === $otherFrameData->getRecovery() &&
+            $this->guardAdvantage === $otherFrameData->getGuardAdvantage() &&
+            $this->hitAdvantage === $otherFrameData->getHitAdvantage()
+        ;
     }
 }
