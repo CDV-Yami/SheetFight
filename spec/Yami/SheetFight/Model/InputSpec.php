@@ -33,4 +33,16 @@ class InputSpec extends ObjectBehavior
         $this->getValue()->shouldBeString();
         $this->getValue()->shouldReturn('123');
     }
+
+    public function it_compares_by_value(Input $otherInput)
+    {
+        $otherInput->getValue()->willReturn('123');
+        $this->beConstructedWith('123');
+        $this->equals($otherInput)->shouldBeBoolean();
+        $this->equals($otherInput)->shouldReturn(true);
+
+        $otherInput->getValue()->willReturn('231');
+        $this->equals($otherInput)->shouldBeBoolean();
+        $this->equals($otherInput)->shouldReturn(false);
+    }
 }

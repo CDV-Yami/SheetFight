@@ -16,4 +16,13 @@ interface InputInterface
      * @return string
      */
     public function getValue();
+
+    /**
+     * Compare input by value.
+     *
+     * @param InputInterface $input
+     *
+     * @return bool
+     */
+    public function equals(InputInterface $input);
 }

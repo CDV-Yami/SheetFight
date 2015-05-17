@@ -37,4 +37,16 @@ class Input implements InputInterface
     {
         return $this->value;
     }
+
+    /**
+     * {@inheritdoc}
+     *
+     * @param InputInterface $input
+     *
+     * @return bool
+     */
+    public function equals(InputInterface $input)
+    {
+        return $this->value === $input->getValue();
+    }
 }
