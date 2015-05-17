@@ -3,6 +3,7 @@
 namespace Yami\SheetFight\Model;
 
 use InvalidArgumentException;
+use LogicException;
 use RangeException;
 
 /**
@@ -74,11 +75,24 @@ class Move implements MoveInterface
             throw new InvalidArgumentException('The cancel abilities should be an array');
         }
 
-        foreach ($cancelAbilities as $cancelAbility) {
+        $uniqueCancelAbilities = [];
+        foreach ($cancelAbilities as $index => $cancelAbility) {
             if (!($cancelAbility instanceof MoveInterface)) {
                 throw new InvalidArgumentException('The cancel abilities should contain only moves');
             }
+
+            $serializedInputs = '';
+            foreach ($cancelAbility->getInputs() as $input) {
+                $serializedInputs .= $input->getValue();
+            }
+
+            if (isset($uniqueCancelAbilities[$serializedInputs])) {
+                throw new LogicException('The cancel abilities should contain unique moves');
+            }
+
+            $uniqueCancelAbilities[$serializedInputs] = true;
         }
+        unset($uniqueCancelAbilities);
 
         $this->type = $type;
         $this->name = $name;
