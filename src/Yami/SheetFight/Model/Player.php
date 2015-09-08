@@ -12,14 +12,27 @@ use InvalidArgumentException;
  */
 class Player implements PlayerInterface
 {
+    /**
+     * @var string
+     */
     private $nickname;
+
+    /**
+     * @var CharacterInterface
+     */
     private $main;
+
+    /**
+     * @var CharacterInterface
+     */
     private $sub;
 
     /**
      * Creates a new player.
      *
-     * @param string $nickname, CharacterInterface $main and CharacterInterface $sub
+     * @param string             $nickname
+     * @param CharacterInterface $main
+     * @param CharacterInterface $sub
      */
     public function __construct($nickname, CharacterInterface $main, CharacterInterface $sub)
     {

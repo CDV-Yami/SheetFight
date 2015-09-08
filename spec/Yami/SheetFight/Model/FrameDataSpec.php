@@ -4,6 +4,7 @@ namespace spec\Yami\SheetFight\Model;
 
 use PhpSpec\ObjectBehavior;
 use InvalidArgumentException;
+use RangeException;
 use Yami\SheetFight\Model\FrameDataInterface;
 
 class FrameDataSpec extends ObjectBehavior
@@ -23,13 +24,20 @@ class FrameDataSpec extends ObjectBehavior
         $this->shouldImplement('Yami\SheetFight\Model\FrameDataInterface');
     }
 
-    public function it_has_a_startup()
+    public function it_has_startup_frames()
     {
         $this->getStartup()->shouldBeInteger();
         $this->getStartup()->shouldReturn(1);
-        $this->shouldThrow(new InvalidArgumentException('The startup should be integer'))
+        $this->shouldThrow(new InvalidArgumentException('The startup frames should be integer'))
             ->during('__construct', ['Yamo', 2, 3, 4, 5])
         ;
+    }
+
+    public function its_startup_frames_should_always_be_positive()
+    {
+      $this->shouldThrow(new RangeException('The startup frames should not be negative'))
+          ->during('__construct', [-1, 1, 3, 4, 5])
+      ;
     }
 
     public function it_has_active_frames()
@@ -41,13 +49,27 @@ class FrameDataSpec extends ObjectBehavior
         ;
     }
 
-    public function it_has_a_recovery()
+    public function its_active_frames_should_always_be_positive()
+    {
+      $this->shouldThrow(new RangeException('The active frames should not be negative'))
+          ->during('__construct', [1, -1, 3, 4, 5])
+      ;
+    }
+
+    public function it_has_recovery_frames()
     {
         $this->getRecovery()->shouldBeInteger();
         $this->getRecovery()->shouldReturn(3);
-        $this->shouldThrow(new InvalidArgumentException('The recovery should be integer'))
+        $this->shouldThrow(new InvalidArgumentException('The recovery frames should be integer'))
             ->during('__construct', [1, 2, 'Yamo', 4, 5])
         ;
+    }
+
+    public function its_recovery_frames_should_always_be_positive()
+    {
+      $this->shouldThrow(new RangeException('The recovery frames should not be negative'))
+          ->during('__construct', [1, 1, -1, 4, 5])
+      ;
     }
 
     public function it_has_a_guard_advantage()
