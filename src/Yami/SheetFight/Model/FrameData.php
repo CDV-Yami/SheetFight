@@ -3,6 +3,7 @@
 namespace Yami\SheetFight\Model;
 
 use InvalidArgumentException;
+use RangeException;
 
 /**
  * Provides accurate frame data for a move.
@@ -12,29 +13,65 @@ use InvalidArgumentException;
  */
 class FrameData implements FrameDataInterface
 {
+    /**
+     * @var int Positive integer
+     */
     private $startup;
+
+    /**
+     * @var int Positive integer
+     */
     private $active;
+
+    /**
+     * @var int Positive integer
+     */
     private $recovery;
+
+    /**
+     * @var int integer
+     */
     private $guardAdvantage;
+
+    /**
+     * @var int integer
+     */
     private $hitAdvantage;
 
     public function __construct($startup, $active, $recovery, $guardAdvantage, $hitAdvantage)
     {
         if (!is_int($startup)) {
-            throw new InvalidArgumentException('The startup should be integer');
+            throw new InvalidArgumentException('The startup frames should be integer');
         }
+
+        if ($startup < 0) {
+            throw new RangeException('The startup frames should not be negative');
+        }
+
         if (!is_int($active)) {
             throw new InvalidArgumentException('The active frames should be integer');
         }
-        if (!is_int($recovery)) {
-            throw new InvalidArgumentException('The recovery should be integer');
+
+        if ($active < 0) {
+            throw new RangeException('The active frames should not be negative');
         }
+
+        if (!is_int($recovery)) {
+            throw new InvalidArgumentException('The recovery frames should be integer');
+        }
+
+        if ($recovery < 0) {
+            throw new RangeException('The recovery frames should not be negative');
+        }
+
         if (!is_int($guardAdvantage)) {
             throw new InvalidArgumentException('The guard advantage should be integer');
         }
+
         if (!is_int($hitAdvantage)) {
             throw new InvalidArgumentException('The hit advantage should be integer');
         }
+
         $this->startup = $startup;
         $this->active = $active;
         $this->recovery = $recovery;
