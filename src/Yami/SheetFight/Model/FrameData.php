@@ -16,27 +16,27 @@ class FrameData implements FrameDataInterface
     /**
      * @var int Positive integer
      */
-    private $startup;
+    protected $startup;
 
     /**
      * @var int Positive integer
      */
-    private $active;
+    protected $active;
 
     /**
      * @var int Positive integer
      */
-    private $recovery;
+    protected $recovery;
 
     /**
      * @var int integer
      */
-    private $guardAdvantage;
+    protected $guardAdvantage;
 
     /**
      * @var int integer
      */
-    private $hitAdvantage;
+    protected $hitAdvantage;
 
     public function __construct($startup, $active, $recovery, $guardAdvantage, $hitAdvantage)
     {

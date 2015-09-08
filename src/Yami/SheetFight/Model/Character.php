@@ -13,9 +13,9 @@ use RangeException;
  */
 class Character implements CharacterInterface
 {
-    private $name;
-    private $health;
-    private $moves;
+    protected $name;
+    protected $health;
+    protected $moves;
 
     public function __construct($name, $health, $moves)
     {
