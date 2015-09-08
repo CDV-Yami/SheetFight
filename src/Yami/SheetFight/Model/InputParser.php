@@ -5,7 +5,7 @@ namespace Yami\SheetFight\Model;
 use InvalidArgumentException;
 
 /**
- * Provides a parser to transform a string to a collection of Input
+ * Provides a parser to transform a string to a collection of Input.
  *
  * @author Kevin GITTENS <kgittens973@gmail.com>
  * @author Ludovic FLEURY <ludo.fleury@gmail.com>
@@ -13,10 +13,10 @@ use InvalidArgumentException;
 class InputParser
 {
     /**
-     * Transform a string to a collection of Input
+     * Transform a string to a collection of Input.
      *
-     * @param  string $string
-     * 
+     * @param string $string
+     *
      * @return InputInterface[]
      */
     public function transforms($string)
