@@ -4,7 +4,7 @@ namespace spec\Yami\SheetFight\Model;
 
 use PhpSpec\ObjectBehavior;
 use Yami\SheetFight\Model\MoveInterface;
-use Yami\SheetFight\Model\InputParser;
+use Yami\SheetFight\Model\InputParserInterface;
 use Yami\SheetFight\Model\Input;
 use Yami\SheetFight\Model\Move;
 use Yami\SheetFight\Model\FrameData;
@@ -12,13 +12,13 @@ use LogicException;
 
 class MoveBuilderSpec extends ObjectBehavior
 {
-    public function it_is_initializable(InputParser $parser)
+    public function it_is_initializable(InputParserInterface $parser)
     {
         $this->beConstructedWith($parser);
         $this->shouldHaveType('Yami\SheetFight\Model\MoveBuilder');
     }
 
-    public function it_should_be_typed_only_once(InputParser $parser)
+    public function it_should_be_typed_only_once(InputParserInterface $parser)
     {
         $this->beConstructedWith($parser);
         $this->is('special');
@@ -27,7 +27,7 @@ class MoveBuilderSpec extends ObjectBehavior
         ;
     }
 
-    public function it_should_be_named_only_once(InputParser $parser)
+    public function it_should_be_named_only_once(InputParserInterface $parser)
     {
         $this->beConstructedWith($parser);
         $this->named('Hadoken');
@@ -36,7 +36,7 @@ class MoveBuilderSpec extends ObjectBehavior
         ;
     }
 
-    public function its_start_position_should_be_defined_only_once(InputParser $parser)
+    public function its_start_position_should_be_defined_only_once(InputParserInterface $parser)
     {
         $this->beConstructedWith($parser);
         $this->start('standing');
@@ -45,7 +45,7 @@ class MoveBuilderSpec extends ObjectBehavior
         ;
     }
 
-    public function its_damage_should_be_defined_only_once(InputParser $parser)
+    public function its_damage_should_be_defined_only_once(InputParserInterface $parser)
     {
         $this->beConstructedWith($parser);
         $this->deal(80);
@@ -54,7 +54,7 @@ class MoveBuilderSpec extends ObjectBehavior
         ;
     }
 
-    public function its_hit_level_should_be_defined_only_once(InputParser $parser)
+    public function its_hit_level_should_be_defined_only_once(InputParserInterface $parser)
     {
         $this->beConstructedWith($parser);
         $this->aim('mid');
@@ -63,7 +63,7 @@ class MoveBuilderSpec extends ObjectBehavior
         ;
     }
 
-    public function its_meter_gain_should_be_defined_only_once(InputParser $parser)
+    public function its_meter_gain_should_be_defined_only_once(InputParserInterface $parser)
     {
         $this->beConstructedWith($parser);
         $this->withMeterGain(10);
@@ -72,7 +72,7 @@ class MoveBuilderSpec extends ObjectBehavior
         ;
     }
 
-    public function its_inputs_should_be_defined_only_once(InputParser $parser)
+    public function its_inputs_should_be_defined_only_once(InputParserInterface $parser)
     {
         $parser->transforms('236P')->willReturn([new Input('2'), new Input('3'), new Input('6'), new Input('P')]);
         $this->beConstructedWith($parser);
@@ -82,7 +82,7 @@ class MoveBuilderSpec extends ObjectBehavior
         ;
     }
 
-    public function its_cancel_abilities_should_be_defined_only_once(InputParser $parser, MoveInterface $move)
+    public function its_cancel_abilities_should_be_defined_only_once(InputParserInterface $parser, MoveInterface $move)
     {
         $move->getName()->willReturn('Hadouken');
         $move->equals($move)->willReturn(true);
@@ -93,7 +93,7 @@ class MoveBuilderSpec extends ObjectBehavior
         ;
     }
 
-    public function its_start_frames_should_be_defined_only_once(InputParser $parser)
+    public function its_start_frames_should_be_defined_only_once(InputParserInterface $parser)
     {
         $this->beConstructedWith($parser);
         $this->startIn(10);
@@ -102,7 +102,7 @@ class MoveBuilderSpec extends ObjectBehavior
         ;
     }
 
-    public function its_active_frames_should_be_defined_only_once(InputParser $parser)
+    public function its_active_frames_should_be_defined_only_once(InputParserInterface $parser)
     {
         $this->beConstructedWith($parser);
         $this->activeDuring(20);
@@ -111,7 +111,7 @@ class MoveBuilderSpec extends ObjectBehavior
         ;
     }
 
-    public function its_recovery_should_be_defined_only_once(InputParser $parser)
+    public function its_recovery_should_be_defined_only_once(InputParserInterface $parser)
     {
         $this->beConstructedWith($parser);
         $this->recoverIn(10);
@@ -120,7 +120,7 @@ class MoveBuilderSpec extends ObjectBehavior
         ;
     }
 
-    public function its_hit_advantage_should_be_defined_only_once(InputParser $parser)
+    public function its_hit_advantage_should_be_defined_only_once(InputParserInterface $parser)
     {
         $this->beConstructedWith($parser);
         $this->advantageOnHit(5);
@@ -129,7 +129,7 @@ class MoveBuilderSpec extends ObjectBehavior
         ;
     }
 
-    public function its_guard_advantage_should_be_defined_only_once(InputParser $parser)
+    public function its_guard_advantage_should_be_defined_only_once(InputParserInterface $parser)
     {
         $this->beConstructedWith($parser);
         $this->advantageOnGuard(-10);
@@ -138,7 +138,7 @@ class MoveBuilderSpec extends ObjectBehavior
         ;
     }
 
-    public function it_builds_move(InputParser $parser)
+    public function it_builds_move(InputParserInterface $parser)
     {
         $parser->transforms('236P')
             ->willReturn([
