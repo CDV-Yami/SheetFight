@@ -27,7 +27,7 @@ class MoveBuilder
     private $guardAdvantage;
     private $hitAdvantage;
 
-    public function __construct(InputParser $parser)
+    public function __construct(InputParserInterface $parser)
     {
         $this->parser = $parser;
         $this->inputs = [];

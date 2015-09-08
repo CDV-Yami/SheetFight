@@ -10,7 +10,7 @@ use InvalidArgumentException;
  * @author Kevin GITTENS <kgittens973@gmail.com>
  * @author Ludovic FLEURY <ludo.fleury@gmail.com>
  */
-class InputParser
+class InputParser implements InputParserInterface
 {
     /**
      * Transform a string to a collection of Input.

@@ -13,6 +13,11 @@ class InputParserSpec extends ObjectBehavior
         $this->shouldHaveType('Yami\SheetFight\Model\InputParser');
     }
 
+    public function it_is_a_parser()
+    {
+        $this->shouldImplement('Yami\SheetFight\Model\InputParserInterface');
+    }
+
     public function it_transforms_a_string_to_inputs()
     {
         $this->transforms('236P')->shouldReturnInputs(
