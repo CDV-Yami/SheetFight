@@ -14,14 +14,49 @@ use RangeException;
  */
 class Move implements MoveInterface
 {
+    /**
+     * @var string normal|special|super
+     */
     private $type;
+
+    /**
+     * @var string
+     */
     private $name;
+
+    /**
+     * @var string crouching|standing|airborne
+     */
     private $initialPosition;
+
+    /**
+     * @var \Yami\SheetFight\Model\InputInterface
+     */
     private $inputs;
+
+    /**
+     * @var int Positive integer
+     */
     private $damage;
+
+    /**
+     * @var int integer
+     */
     private $meterGain;
+
+    /**
+     * @var string low|mid|high
+     */
     private $hitLevel;
+
+    /**
+     * @var \Yami\SheetFight\Model\MoveInterface[]
+     */
     private $cancelAbilities;
+
+    /**
+     * @var \Yami\SheetFight\Model\FrameDataInterface
+     */
     private $frameData;
 
     public function __construct(
@@ -60,8 +95,16 @@ class Move implements MoveInterface
             }
         }
 
+        if (!is_int($damage)) {
+            throw new InvalidArgumentException('The damage should be an integer');
+        }
+
         if ($damage < 0) {
             throw new RangeException('The damage should not be negative');
+        }
+
+        if (!is_int($meterGain)) {
+            throw new InvalidArgumentException('The meter gain should be an integer');
         }
 
         switch (false) {
@@ -81,10 +124,7 @@ class Move implements MoveInterface
                 throw new InvalidArgumentException('The cancel abilities should contain only moves');
             }
 
-            $serializedInputs = '';
-            foreach ($cancelAbility->getInputs() as $input) {
-                $serializedInputs .= $input->getValue();
-            }
+            $serializedInputs = $cancelAbility->getInputs(true);
 
             if (isset($uniqueCancelAbilities[$serializedInputs])) {
                 throw new LogicException('The cancel abilities should contain unique moves');
