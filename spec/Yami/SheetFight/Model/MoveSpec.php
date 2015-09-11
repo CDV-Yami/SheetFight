@@ -78,6 +78,12 @@ class MoveSpec extends ObjectBehavior
         $this->isNormal()->shouldBe(false);
     }
 
+    public function it_has_a_type()
+    {
+        $this->getType()->shouldBeString();
+        $this->getType()->shouldReturn('normal');
+    }
+
     public function it_has_a_name()
     {
         $this->getName()->shouldBeString();
@@ -146,7 +152,7 @@ class MoveSpec extends ObjectBehavior
 
     public function its_damage_should_be_an_integer()
     {
-      $this->shouldThrow(new InvalidArgumentException('The damage should be an integer'))
+        $this->shouldThrow(new InvalidArgumentException('The damage should be an integer'))
           ->during('__construct', [MoveInterface::TYPE_NORMAL, 'YamoKick', 'standing', $this->defaultInputs, 1.4, 100, 'mid', $this->defaultCancelAbilities, $this->defaultFrameData])
       ;
     }
@@ -166,7 +172,7 @@ class MoveSpec extends ObjectBehavior
 
     public function its_meter_gain_should_be_an_integer()
     {
-      $this->shouldThrow(new InvalidArgumentException('The meter gain should be an integer'))
+        $this->shouldThrow(new InvalidArgumentException('The meter gain should be an integer'))
           ->during('__construct', [MoveInterface::TYPE_NORMAL, 'YamoKick', 'standing', $this->defaultInputs, 1, 1.4, 'mid', $this->defaultCancelAbilities, $this->defaultFrameData])
       ;
     }
