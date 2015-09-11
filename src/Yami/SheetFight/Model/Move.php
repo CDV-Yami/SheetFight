@@ -144,6 +144,7 @@ class Move implements MoveInterface
         $this->cancelAbilities = $cancelAbilities;
         $this->frameData = $frameData;
     }
+
     /**
      * {@inheritdoc}
      *
@@ -172,6 +173,16 @@ class Move implements MoveInterface
     public function isSuper()
     {
         return MoveInterface::TYPE_SUPER === $this->type;
+    }
+
+    /**
+     * {@inheritdoc}
+     *
+     * @return string
+     */
+    public function getType()
+    {
+        return $this->type;
     }
 
     /**

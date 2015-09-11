@@ -38,6 +38,13 @@ interface MoveInterface
     public function isSuper();
 
     /**
+     * Return the type of the move.
+     *
+     * @return string
+     */
+    public function getType();
+
+    /**
      * Return the common name.
      *
      * @return string
