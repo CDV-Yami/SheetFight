@@ -3,3 +3,5 @@ bin/phpspec
 bin/php-cs-fixer
 composer.phar
 .php_cs.cache
+
+composer.lock

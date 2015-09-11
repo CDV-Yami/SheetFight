@@ -12,20 +12,20 @@ use LogicException;
  */
 class MoveBuilder
 {
-    private $parser;
-    private $type;
-    private $name;
-    private $initialPosition;
-    private $inputs;
-    private $damage;
-    private $meterGain;
-    private $hitLevel;
-    private $cancelAbilities;
-    private $startFrames;
-    private $activeFrames;
-    private $recoveryFrames;
-    private $guardAdvantage;
-    private $hitAdvantage;
+    protected $parser;
+    protected $type;
+    protected $name;
+    protected $initialPosition;
+    protected $inputs;
+    protected $damage;
+    protected $meterGain;
+    protected $hitLevel;
+    protected $cancelAbilities;
+    protected $startFrames;
+    protected $activeFrames;
+    protected $recoveryFrames;
+    protected $guardAdvantage;
+    protected $hitAdvantage;
 
     public function __construct(InputParserInterface $parser)
     {
