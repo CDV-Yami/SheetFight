@@ -17,47 +17,47 @@ class Move implements MoveInterface
     /**
      * @var string normal|special|super
      */
-    protected $type;
+    private $type;
 
     /**
      * @var string
      */
-    protected $name;
+    private $name;
 
     /**
      * @var string crouching|standing|airborne
      */
-    protected $initialPosition;
+    private $initialPosition;
 
     /**
      * @var \Yami\SheetFight\Model\InputInterface
      */
-    protected $inputs;
+    private $inputs;
 
     /**
      * @var int Positive integer
      */
-    protected $damage;
+    private $damage;
 
     /**
      * @var int integer
      */
-    protected $meterGain;
+    private $meterGain;
 
     /**
      * @var string low|mid|high
      */
-    protected $hitLevel;
+    private $hitLevel;
 
     /**
      * @var \Yami\SheetFight\Model\MoveInterface[]
      */
-    protected $cancelAbilities;
+    private $cancelAbilities;
 
     /**
      * @var \Yami\SheetFight\Model\FrameDataInterface
      */
-    protected $frameData;
+    private $frameData;
 
     public function __construct(
         $type,

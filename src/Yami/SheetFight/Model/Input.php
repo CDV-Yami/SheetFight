@@ -12,7 +12,7 @@ use InvalidArgumentException;
  */
 class Input implements InputInterface
 {
-    protected $value;
+    private $value;
 
     /**
      * Creates a new input.

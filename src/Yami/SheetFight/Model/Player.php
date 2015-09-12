@@ -15,17 +15,17 @@ class Player implements PlayerInterface
     /**
      * @var string
      */
-    protected $nickname;
+    private $nickname;
 
     /**
      * @var CharacterInterface
      */
-    protected $main;
+    private $main;
 
     /**
      * @var CharacterInterface
      */
-    protected $sub;
+    private $sub;
 
     /**
      * Creates a new player.
