@@ -2,6 +2,8 @@
 
 namespace spec\Yami\SheetFight\Model;
 
+require_once __DIR__.'/../Mock/Collection.php';
+
 use PhpSpec\ObjectBehavior;
 use InvalidArgumentException;
 use RangeException;
@@ -9,6 +11,7 @@ use Yami\SheetFight\Model\InputInterface;
 use Yami\SheetFight\Model\MoveInterface;
 use Yami\SheetFight\Model\FrameDataInterface;
 use LogicException;
+use spec\Yami\SheetFight\Mock\Collection;
 
 class MoveSpec extends ObjectBehavior
 {
@@ -200,6 +203,12 @@ class MoveSpec extends ObjectBehavior
     public function it_has_cancel_abilities()
     {
         $this->getCancelAbilities()->shouldReturn($this->defaultCancelAbilities);
+    }
+
+    public function its_cancel_abilities_could_be_a_collection(Collection $collection)
+    {
+        $this->beConstructedWith(MoveInterface::TYPE_SPECIAL, 'YamoKick', 'standing', $this->defaultInputs, 100, 100, 'mid', $collection, $this->defaultFrameData);
+        $this->getCancelAbilities()->shouldReturn($collection);
     }
 
     public function its_cancel_abilities_should_always_be_an_array()
