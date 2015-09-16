@@ -5,6 +5,8 @@ namespace Yami\SheetFight\Model;
 use InvalidArgumentException;
 use LogicException;
 use RangeException;
+use ArrayAccess;
+use Traversable;
 
 /**
  * Represents an action done by the character in the game.
@@ -114,7 +116,7 @@ class Move implements MoveInterface
                 throw new InvalidArgumentException('Invalid hit level');
         }
 
-        if (!is_array($cancelAbilities)) {
+        if (!(is_array($cancelAbilities) || ($cancelAbilities instanceof Traversable && $cancelAbilities instanceof ArrayAccess))) {
             throw new InvalidArgumentException('The cancel abilities should be an array');
         }
 
